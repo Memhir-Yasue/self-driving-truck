@@ -61,10 +61,11 @@ def record(keys_list, training_data_storage, training_file_name):
         img = sct.grab(mon)
 
         print('fps: {0}'.format(1 / (time.time()-last_time)))
-        np_img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
-        processed_img = cv2.resize(np_img, (165, 100))
+
         try:
-            training_data_storage.append((processed_img, keys_list[0]))
+            np_img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+            # processed_img = cv2.resize(np_img, (165, 100))
+            training_data_storage.append((np_img, keys_list[0]))
         except Exception:
             print("frame is skipped!")
             pass
